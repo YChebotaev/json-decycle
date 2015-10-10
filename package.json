@@ -1,0 +1,33 @@
+{
+  "name": "json-decycle",
+  "version": "1.0.0",
+  "description": "(es6) stringify and parse cycled reference json",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YChebotaev/json-decycle.git"
+  },
+  "keywords": [
+    "json",
+    "decycle",
+    "cycle",
+    "stringify",
+    "parse",
+    "circular",
+    "reference",
+    "recursive",
+    "recursion"
+  ],
+  "author": "YChebotaev",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/YChebotaev/json-decycle/issues"
+  },
+  "homepage": "https://github.com/YChebotaev/json-decycle#readme",
+  "engines": {
+    "node": ">= 4.1.0"
+  }
+}
