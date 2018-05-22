@@ -8,7 +8,7 @@ Usage
 
 ```javascript
 var decycle = require('json-decycle').decycle
-var retrocycle = require('../index').retrocycle
+var retrocycle = require('json-decycle').retrocycle
 
 var cycled = {
   foo: {},
