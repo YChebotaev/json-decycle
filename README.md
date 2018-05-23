@@ -1,7 +1,7 @@
 json-decycle (es6)
 ============
 
-Stringify and parse cycled reference json by replacing cycled references to [JSON-reference](http://json-spec.readthedocs.org/en/latest/reference.html)
+Stringify and parse cycled reference json by replacing cycled references to [JSON-reference](https://json-spec.readthedocs.io/reference.html)
 
 Usage
 -----
