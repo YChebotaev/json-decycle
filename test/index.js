@@ -65,3 +65,35 @@ assert(result3.foo.bar === result3.foo)
 assert(result3.bar.foo === result3.bar)
 
 console.log('Done! All tests have been passed!')
+
+console.log('Now begin extra test for issue #1')
+// extra test for issue #1
+// https://github.com/YChebotaev/json-decycle/issues/1
+var infos = { tasks: 
+  [ { type: 'task',
+      description: 'Finish inbox',
+      createdOn: '2017-11-07T22:02:19.696Z' },
+    { type: 'task',
+      description: 'Make sure it works',
+      createdOn: '2017-11-07T22:02:36.775Z' } ],
+ notes: 
+  [ { type: 'note',
+      content: 'This is a note',
+      createdOn: '2017-11-07T22:02:27.631Z' },
+    { type: 'note',
+      content: 'It\'s working, I think.',
+      createdOn: '2017-11-07T22:02:44.442Z' } ],
+ inbox: 
+  [ ],
+}
+
+infos.inbox[0] = infos.tasks[0]
+infos.inbox[1] = infos.tasks[0]
+infos.inbox[2] = infos.tasks[1]
+infos.inbox[3] = infos.tasks[1]
+
+result4 = JSON.stringify(infos, decycle())
+console.log(result4)
+
+result4 = JSON.parse(result4, retrocycle())
+console.log(result4)
