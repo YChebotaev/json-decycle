@@ -92,7 +92,7 @@ infos.inbox[1] = infos.tasks[0]
 infos.inbox[2] = infos.tasks[1]
 infos.inbox[3] = infos.tasks[1]
 
-result4 = JSON.stringify(infos, decycle())
+var result4 = JSON.stringify(infos, decycle())
 console.log(result4)
 
 result4 = JSON.parse(result4, retrocycle())
