@@ -92,8 +92,20 @@ infos.inbox[1] = infos.tasks[0]
 infos.inbox[2] = infos.tasks[1]
 infos.inbox[3] = infos.tasks[1]
 
+console.log(infos)
+
+assert(infos.inbox[0] === infos.tasks[0])
+assert(infos.inbox[1] === infos.tasks[0])
+assert(infos.inbox[2] === infos.tasks[1])
+assert(infos.inbox[3] === infos.tasks[1])
+
 var result4 = JSON.stringify(infos, decycle())
 console.log(result4)
 
 result4 = JSON.parse(result4, retrocycle())
 console.log(result4)
+
+assert(result4.inbox[0] === result4.tasks[0])
+assert(result4.inbox[1] === result4.tasks[0])
+assert(result4.inbox[2] === result4.tasks[1])
+assert(result4.inbox[3] === result4.tasks[1])
