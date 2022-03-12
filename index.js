@@ -37,6 +37,7 @@ function decycle (object) {
 
 function retrocycle () {
   var parents = new exports.WeakMap()
+  var keys = new exports.WeakMap()
   var refs = new exports.Set()
 
   return function reviver (key, value) {
@@ -49,6 +50,7 @@ function retrocycle () {
         refs.forEach(dereference, this)
       } else {
         parents.set(value, this)
+        keys.set(value, key)
       }
     }
 
@@ -63,7 +65,7 @@ function retrocycle () {
       value = value[key]
     }
     parent = parents.get(ref)
-    parent[key] = value
+    parent[keys.get(ref)] = value
   }
 
 }
