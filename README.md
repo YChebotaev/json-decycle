@@ -31,12 +31,11 @@ Extend JSON global object
 
 `JSON.parse` and `JSON.stringify` is not modified
 
-```
+```javascript
 require('json-decycle').extend(JSON)
 
-JSON.decycle === require('json-decycle').decycle
-JSON.retrocycle === require('json-decycle').retrocycle
-
+JSON.decycle({}) === '{}'
+JSON.retrocycle('{}') === {}
 ```
 
 ES6 features
