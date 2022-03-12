@@ -1,6 +1,6 @@
 {
   "name": "json-decycle",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "(es6) stringify and parse cycled reference json",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/YChebotaev/json-decycle#readme",
   "engines": {
-    "node": ">= 4.1.0"
+    "node": ">= 16.13.2"
   }
 }
