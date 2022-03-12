@@ -42,14 +42,13 @@ JSON.retrocycle === require('json-decycle').retrocycle
 ES6 features
 ------------
 
-Library depends on es6 features `WeakMap`, `WeakSet` and `Set` so if you environment does not support this features, you can override it:
+Library depends on es6 features `Map`, `WeakMap`, `WeakSet` and `Set` so if you environment does not support this features, you can override it:
 
 ```javascript
+const jsonDecycle = require('json-decycle')
 
-var jsonDecycle = require('json-decycle')
-
+jsonDecycle.Map = Map
 jsonDecycle.WeakMap = WeakMap
 jsonDecycle.WeakSet = WeakSet
 jsonDecycle.Set = Set
-
 ```

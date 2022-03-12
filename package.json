@@ -1,6 +1,6 @@
 {
   "name": "json-decycle",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "(es6) stringify and parse cycled reference json",
   "main": "index.js",
   "scripts": {
