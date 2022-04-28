@@ -3,6 +3,15 @@ json-decycle (es6)
 
 Stringify and parse cycled reference json by replacing cycled references to [JSON-reference](https://json-spec.readthedocs.io/reference.html)
 
+Is project alive?
+----------------
+
+Yes, it works just fine.
+
+Because this library have no dependencies, it's not required to have frequent updates.
+
+If You encounter a bug or need to support special case, feel free to file an issue or open PR.
+
 Usage
 -----
 
