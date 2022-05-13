@@ -127,3 +127,30 @@ const { decycle, retrocycle, extend } = require('../index')
   assert(JSONMock.decycle({}) === '{}')
   assert(JSON.stringify(JSONMock.retrocycle('{}')) === JSON.stringify({}))
 }
+
+{
+  const cycled = {
+    foo: {},
+    bar: {},
+    test: { $ref: "#/invalid" }
+  }
+  
+  cycled.foo.bar = cycled.bar
+  cycled.bar.foo = cycled.foo
+  
+  assert(cycled.foo.bar === cycled.bar)
+  assert(cycled.bar.foo === cycled.foo)
+
+  
+  let result = JSON.stringify(cycled, decycle())
+  
+  assert.equal(result, '{"foo":{"bar":{"foo":{"$ref":"#/foo"}}},"bar":{"$ref":"#/foo/bar"},"test":{"$ref":"##/invalid"}}')
+  
+  result = JSON.parse(result, retrocycle())
+  
+  assert(result.foo.bar === result.bar)
+  assert(result.bar.foo === result.foo)
+  assert(result.test !== undefined)
+  assert(result.test.$ref === '#/invalid')
+}
+
