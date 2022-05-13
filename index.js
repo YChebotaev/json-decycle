@@ -19,6 +19,8 @@ const isObject = (value) => typeof value === 'object'
  */
 const toPointer = (parts) => '#' + parts.map(part => String(part).replace(/~/g, '~0').replace(/\//g, '~1')).join('/')
 
+const sym = Symbol('$ref')
+
 /**
  * @returns (key: string | symbol, value: any) => any
  */
@@ -31,11 +33,14 @@ const decycle = () => {
    * @this object
    */
   return function replacer(key, value) {
-    if (key !== '$ref' && isObject(value)) {
+    if (key === '$ref' && (typeof value === "string" || (value instanceof String && !value[sym])) && value.startsWith("#")) return "#" + value
+    if (isObject(value)) {
       const seen = paths.has(value)
 
       if (seen) {
-        return { $ref: toPointer(paths.get(value)) }
+        const $ref = new String(toPointer(paths.get(value)))
+        $ref[sym] = true
+        return { $ref }
       } else {
         paths.set(value, [...paths.get(this) ?? [], key])
       }
@@ -76,8 +81,9 @@ function retrocycle() {
    * @this object
    */
   return function reviver(key, value) {
-    if (key === '$ref') {
-      refs.add(this)
+    if (key === '$ref' && typeof value === "string") {
+      if (value.startsWith("##")) return value.slice(1)
+      else refs.add(this)
     } else
       if (isObject(value)) {
         var isRoot = key === '' && Object.keys(this).length === 1
