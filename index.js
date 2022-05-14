@@ -83,7 +83,7 @@ function retrocycle() {
   return function reviver(key, value) {
     if (key === '$ref' && typeof value === "string") {
       if (value.startsWith("##")) return value.slice(1)
-      else if (value.startsWith("#/")) {
+      else if (value.startsWith("#")) {
         refs.add(this)
         return value
       }
