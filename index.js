@@ -83,17 +83,20 @@ function retrocycle() {
   return function reviver(key, value) {
     if (key === '$ref' && typeof value === "string") {
       if (value.startsWith("##")) return value.slice(1)
-      else refs.add(this)
-    } else
-      if (isObject(value)) {
-        var isRoot = key === '' && Object.keys(this).length === 1
-        if (isRoot) {
-          refs.forEach(dereference, this)
-        } else {
-          parents.set(value, this)
-          keys.set(value, key)
-        }
+      else if (value.startsWith("#/")) {
+        refs.add(this)
+        return value
       }
+    } 
+    if (isObject(value)) {
+      var isRoot = key === '' && Object.keys(this).length === 1
+      if (isRoot) {
+        refs.forEach(dereference, this)
+      } else {
+        parents.set(value, this)
+        keys.set(value, key)
+      }
+    }
 
     return value
   }
