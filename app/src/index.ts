@@ -3,10 +3,8 @@ exports.WeakMap = WeakMap
 exports.WeakSet = WeakSet
 exports.Set = Set
 
-/**
- * @param {any} value 
- */
-const isObject = (value) => typeof value === 'object'
+
+const isObject = (value: any) => typeof value === 'object'
   && value != null
   && !(value instanceof Boolean)
   && !(value instanceof Date)
@@ -14,23 +12,14 @@ const isObject = (value) => typeof value === 'object'
   && !(value instanceof RegExp)
   && !(value instanceof String)
 
-/**
- * @param {string[]} parts 
- */
-const toPointer = (parts) => '#' + parts.map(part => String(part).replace(/~/g, '~0').replace(/\//g, '~1')).join('/')
 
-/**
- * @returns (key: string | symbol, value: any) => any
- */
-const decycle = () => {
+const toPointer = (parts: string[]) => '#' + parts.map(part => String(part).replace(/~/g, '~0').replace(/\//g, '~1')).join('/')
+
+
+function decycle() {
   const paths = new exports.WeakMap()
 
-  /**
-   * @param {string | symbol} key
-   * @param {any} value
-   * @this object
-   */
-  return function replacer(key, value) {
+  return function replacer(key: string | symbol, value: any) {
     if (key !== '$ref' && isObject(value)) {
       const seen = paths.has(value)
 
@@ -45,19 +34,13 @@ const decycle = () => {
   }
 }
 
-/**
- * @returns (key: string | symbol, value: any) => any
- */
+
 function retrocycle() {
   const parents = new exports.WeakMap()
   const keys = new exports.WeakMap()
   const refs = new exports.Set()
 
-  /**
-   * @param {{ $ref: string }} ref
-   * @this object
-   */
-  function dereference(ref) {
+  function dereference(ref: { $ref: string }) {
     const parts = ref.$ref.slice(1).split('/')
     let key, parent, value = this
 
@@ -70,12 +53,7 @@ function retrocycle() {
     parent[keys.get(ref)] = value
   }
 
-  /**
-   * @param {string | symbol} key
-   * @param {any} value
-   * @this object
-   */
-  return function reviver(key, value) {
+  return function reviver(key: string | symbol, value: any) {
     if (key === '$ref') {
       refs.add(this)
     } else
@@ -93,25 +71,13 @@ function retrocycle() {
   }
 }
 
-/**
- * @param {{ parse: typeof JSON.parse, stringify: typeof JSON.stringify }} JSON
- */
-const extend = (JSON) => {
-  return Object.defineProperties(JSON, {
+const extend = (_JSON: typeof JSON) => {
+  return Object.defineProperties(_JSON, {
     decycle: {
-      /**
-       * @param {any} object
-       * @param {string | number} space
-       * @returns string
-       */
-      value: (object, space) => JSON.stringify(object, decycle(), space)
+      value: (object: any, space: string | number) => _JSON.stringify(object, decycle(), space)
     },
     retrocycle: {
-      /**
-       * @param {string} s 
-       * @returns any
-       */
-      value: (s) => JSON.parse(s, retrocycle())
+      value: (s: string) => _JSON.parse(s, retrocycle())
     }
   })
 }
