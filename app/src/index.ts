@@ -16,7 +16,7 @@ const isObject = (value: any) => typeof value === 'object'
 const toPointer = (parts: string[]) => '#' + parts.map(part => String(part).replace(/~/g, '~0').replace(/\//g, '~1')).join('/')
 
 
-function decycle() {
+export function decycle() {
   const paths = new exports.WeakMap()
 
   return function replacer(key: string | symbol, value: any) {
@@ -35,7 +35,7 @@ function decycle() {
 }
 
 
-function retrocycle() {
+export function retrocycle() {
   const parents = new exports.WeakMap()
   const keys = new exports.WeakMap()
   const refs = new exports.Set()
@@ -71,7 +71,7 @@ function retrocycle() {
   }
 }
 
-const extend = (_JSON: typeof JSON) => {
+export const extend = (_JSON: typeof JSON) => {
   return Object.defineProperties(_JSON, {
     decycle: {
       value: (object: any, space: string | number) => _JSON.stringify(object, decycle(), space)
@@ -82,8 +82,3 @@ const extend = (_JSON: typeof JSON) => {
   })
 }
 
-Object.assign(exports, {
-  decycle,
-  retrocycle,
-  extend
-})
