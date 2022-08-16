@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./app/dist",
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "declaration": true
+  }
+}

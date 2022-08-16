@@ -1,6 +1,6 @@
 const assert = require('assert')
 
-const { decycle, retrocycle, extend } = require('../index')
+const { decycle, retrocycle, extend } = require('../app/dist/cjs/index')
 
 {
   const cycled = {
@@ -127,3 +127,6 @@ const { decycle, retrocycle, extend } = require('../index')
   assert(JSONMock.decycle({}) === '{}')
   assert(JSON.stringify(JSONMock.retrocycle('{}')) === JSON.stringify({}))
 }
+
+
+console.log("test complete")

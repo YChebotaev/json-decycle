@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "./app/dist/cjs",
+    "module": "CommonJS",
+    "target": "es2019",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "declaration": false,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "./test",
+    "./repl",
+    "./app/dist"
+  ],
+  "include": [
+    "./app/src"
+  ]
+}

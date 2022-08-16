@@ -1,0 +1,16 @@
+test
+repl
+src
+index.html
+.github
+tsconfig.prod.esm.json
+tsconfig.prod.cjs.json
+tsconfig.dev.json
+tsconfig.json
+rollup.node.common.config.js
+rollup.node.test.config.js
+rollup.web.common.config.js
+rollup.node.dev.config.js
+rollup.web.dev.config.js
+jest.config.js
+.DS_Store
