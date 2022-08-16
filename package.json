@@ -19,6 +19,7 @@
     "webDev": "rollup --config rollup.web.dev.config.js -w",
     "nodeDev": "rollup --config rollup.node.dev.config.js -w",
     "test": "npm run buildCJS && node test/index.js",
+    "repl": "node repl/index",
     "deploy": "npm run build && npm publish"
   },
   "repository": {
