@@ -53,5 +53,10 @@ build/Release
 
 node_modules
 
-# distribution; can be built with npm run build
+# distribution
+
+# can be built with npm run build
 app/dist
+
+# can be built with npm run dev
+repl/dist

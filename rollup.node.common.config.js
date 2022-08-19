@@ -7,7 +7,7 @@ import json from '@rollup/plugin-json'
 export default {
   input: './repl/src/repl.ts',
   output: {
-    file: 'repl/dist/tinyDelay-repl.js',
+    file: 'repl/dist/jsonDecycle.js',
     format: 'cjs'
   },
   plugins: [

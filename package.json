@@ -12,12 +12,12 @@
     "default": "./app/dist/esm/index.js"
   },
   "scripts": {
-    "build": "npm run buildESM; npm run buildCJS",
+    "build": "del-cli app/dist && npm run buildESM; npm run buildCJS",
     "buildESM": "tsc -p ./tsconfig.prod.esm.json",
     "buildCJS": "tsc -p ./tsconfig.prod.cjs.json",
     "dev": "npm run webDev",
-    "webDev": "rollup --config rollup.web.dev.config.js -w",
-    "nodeDev": "rollup --config rollup.node.dev.config.js -w",
+    "webDev": "del-cli repl/dist && concurrently 'rollup --config rollup.web.dev.config.js -w' 'wait-on repl/dist && node simpleWebServer.js' -n \"build,server\" -c \"bgBlue.bold,bgMagenta.bold\"",
+    "nodeDev": "del-cli repl/dist && concurrently 'rollup --config rollup.node.dev.config.js -w' 'wait-on repl/dist && printf \"\nReady! Run \\\"npm run repl\\\" (in another console) to execute.\"' -n \"build,info\" -c \"bgBlue.bold,bgMagenta.bold\" --raw",
     "test": "npm run buildCJS && node test/index.js",
     "repl": "node repl/index",
     "deploy": "npm run build && npm publish"
@@ -52,8 +52,14 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.4",
     "@types/node": "^18.7.5",
+    "concurrently": "^7.3.0",
+    "del-cli": "^5.0.0",
+    "detect-port": "^1.3.0",
+    "express": "^4.18.1",
+    "open": "^8.4.0",
     "rollup": "^2.78.0",
     "typescript": "^4.7.4",
+    "wait-on": "^6.0.1",
     "webpack-merge": "^5.8.0"
   }
 }
