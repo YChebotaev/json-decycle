@@ -1,7 +1,14 @@
-exports.Map = Map
-exports.WeakMap = WeakMap
-exports.WeakSet = WeakSet
-exports.Set = Set
+const _Map = Map
+const _WeakMap = WeakMap
+const _WeakSet = WeakSet
+const _Set = Set
+
+export {
+  _Map as Map,
+  _WeakMap as WeakMap,
+  _WeakSet as WeakSet,
+  _Set as Set
+}
 
 
 const isObject = (value: any) => typeof value === 'object'
