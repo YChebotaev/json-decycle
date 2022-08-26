@@ -20,7 +20,7 @@
     "nodeDev": "del-cli repl/dist && concurrently 'rollup --config rollup.node.dev.config.js -w' 'wait-on repl/dist && printf \"\nReady! Run \\\"npm run repl\\\" (in another console) to execute.\"' -n \"build,info\" -c \"bgBlue.bold,bgMagenta.bold\" --raw",
     "test": "npm run buildCJS && node test/index.js",
     "repl": "node repl/index",
-    "deploy": "npm run build && npm publish"
+    "deploy": "npm run test && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
