@@ -10,6 +10,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
+      - run: npm install
       - run: npm test
       - run: npm build
       - uses: JS-DevTools/npm-publish@v1
